@@ -1,0 +1,7 @@
+com\usuarios\servlet\InsertUsersPorDefecto.class
+com\usuarios\servlet\DeleteUser.class
+com\usuarios\servlet\Grupos.class
+com\usuarios\servlet\BuscarUserNombre.class
+com\usuarios\servlet\Usuarios.class
+com\usuarios\servlet\MostrarUsuariosServlet.class
+com\usuarios\servlet\ProcesarForm.class
