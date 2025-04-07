@@ -1,10 +1,27 @@
-package com.usuarios.servlet;
+package com.usuarios.Clases;
 
-public class Usuarios  {
-	private String nombre;
-	private int edad;
-	private int id;
-	private String sexo;
+
+import java.io.Serializable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="Usuarios")
+
+public class Usuarios   implements Serializable{
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String nombre;
+    private int edad;
+    private String sexo;
+
+    public Usuarios() {} // 👈 Constructor vacío obligatorio para JPA
 	
 	
 	public int getId() {

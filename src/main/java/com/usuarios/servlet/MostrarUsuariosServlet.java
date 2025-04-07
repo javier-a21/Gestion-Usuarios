@@ -2,18 +2,32 @@ package com.usuarios.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
-import jakarta.servlet.ServletException; 
-import jakarta.servlet.annotation.WebServlet; 
-import jakarta.servlet.http.HttpServlet; 
-import jakarta.servlet.http.HttpServletRequest; 
-import jakarta.servlet.http.HttpServletResponse; 
+import com.usuarios.Clases.Usuarios;
+
+import jakarta.annotation.Resource;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.UserTransaction;
+
 
 
 @WebServlet("/mostrarUsuarios")
 public class MostrarUsuariosServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    
+    @PersistenceContext
+    private EntityManager entityManager;
 
+
+    @Resource
+    private UserTransaction userTransaction;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,16 +45,34 @@ public class MostrarUsuariosServlet extends HttpServlet {
         out.println("</div>");
 
         out.println("<ul>");
-        if(Grupos.listaUsers.isEmpty()) {
-        	out.println("<h3>No hay usuarios registrados todavia: </h3>");
-        }else {
-        	for (Usuarios usuario : Grupos.listaUsers) {
-                out.println("<li>" + usuario.toString() + "</li>");
+        try {
+            // Empezamos una transacción
+            userTransaction.begin();
+
+            // Realizamos una consulta simple usando JPA (esto depende de tu entidad)
+            List<Usuarios> users = entityManager.createQuery("SELECT m FROM Usuarios m", Usuarios.class).getResultList();
+            if(users.isEmpty()) {
+            	out.println("<h3>No hay usuarios registrados todavia: </h3>");           
+            	}
+            else {
+            	for (Usuarios usuario : users) {
+                    out.println("<li>" + usuario.toString() + "</li>");                }
+            }
+            userTransaction.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                userTransaction.rollback();
+            } catch (Exception rollbackEx) {
+                rollbackEx.printStackTrace();
             }
         }
+        
         
         out.println("</ul>");
         out.println("<a class='volver' href='index.jsp'>Volver</a>");
         out.println("</html>");
+        out.close();
     }
 }
