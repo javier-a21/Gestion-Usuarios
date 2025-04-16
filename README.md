@@ -8,7 +8,6 @@ En el repositorio hay Cuatro Branches: **Main**, la aplicacion original hecha en
 La estructura del proyecto es la siguiente para la rama migracion-Jakarta: Estructura del Proyecto src/main/java: Contiene el código fuente de la aplicación, como los modelos, controladores y servicios.
 
 src/main/webapp: Esta carpeta contiene los archivos de configuración que son utilizados por la aplicación. Aquí se encuentran los archivos necesarios para configurar la conexión a la base de datos y otras propiedades necesarias para la aplicación.
-  - **`persistence.xml`**: Este archivo se encuentra dentro de     `src/main/resources/META-INF` y configura la unidad de persistencia, que es responsable de conectar la aplicación con la base de datos a través de JPA (Java Persistence API).
 
 src/main/resources: Contiene configuraciones de la base de datos y otras propiedades.
 
