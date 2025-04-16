@@ -1,4 +1,4 @@
-package com.usuarios.Clases;
+package com.usuarios.model;
 
 
 import java.io.Serializable;

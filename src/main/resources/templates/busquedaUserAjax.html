@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Asegúrate de incluir jQuery -->
+    <script>
+    $(document).ready(function() {
+        $('#nombre').on('keyup', function() {
+            var name = $('#nombre').val();
+            $.ajax({
+                url: '/usuarios/validarNombre', // URL corregida
+                type: 'POST',
+                data: { nombreBuscado: name }, // Asegúrate de que el nombre del parámetro coincida
+                success: function(response) {
+                    $('#resultado').empty();
+                    response.forEach(function(user) {
+                        $('#resultado').append('<li>Datos del usuario: id: ' + user.id+ ', nombre: ' + user.nombre + ', edad: ' + user.edad + ', sexo: ' + user.sexo +'</li>');
+                    });
+
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                    $('#resultado').append('<li>Error al cargar los usuarios.</li>');
+                }
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+    <h1>Buscar Usuario por Nombre</h1>
+    <label class="labelAjax" for="nombre">Nombre:</label>
+    <input class="nombreInput" type="text" id="nombre" name="nombre" onkeyup="validarNombre()" placeholder="Escribe el nombre..." />
+
+    <div id="resultado"></div>
+<a class='volver' href="/usuarios/listar">Volver a la lista</a>
+</body>
+</html>

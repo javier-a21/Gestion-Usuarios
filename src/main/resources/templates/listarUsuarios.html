@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1 style= 'margin-top: 3%;'>Lista de usuarios guardados: </h1>
+<div class='button-container'>
+<a class='acciones' href='/usuarios/buscarUser'>Buscar</a>
+<a class='acciones' href='/usuarios/eliminar'>Eliminar Usuario por Id</a>
+</div>
+
+<ul>
+    <li th:if="${usuarios.isEmpty()}">No hay usuarios registrados</li>
+    <li th:each="user : ${usuarios}">
+        <span th:text="'Datos del usuario: id: ' + ${user.id} + ', nombre: ' + ${user.nombre} + ', edad: ' + ${user.edad} + ', sexo: ' + ${user.sexo}"></span>
+    </li>
+
+</ul>
+    <a class='volver' href="/usuarios/">Volver</a>
+</body>
+</html>

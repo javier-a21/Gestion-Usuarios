@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Eliminar Usuario</h1>
+
+    <form action="eliminar" method="post">
+        <label class="form-label" for="id">ID del Usuario a Eliminar:</label>
+        <input class="form-input" type="text" id="id" name="id" placeholder="Escribe el ID">
+        <input class="form-button"  type="submit" value="Eliminar">
+    </form>
+
+ <div class="centrado" th:if="${mensaje}" style="color: blue; font-weight: bold;">
+    <p th:text="${mensaje}"></p>
+</div>
+
+    <a class='volver' href="/usuarios/listar">Volver a la lista</a>
+</body>
+</html>

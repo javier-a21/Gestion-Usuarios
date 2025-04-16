@@ -1,5 +1,4 @@
-C:\Projects1\Gestion-Usuarios\src\main\java\com\usuarios\servlet\MostrarUsuariosServlet.java
-C:\Projects1\Gestion-Usuarios\src\main\java\com\usuarios\servlet\BuscarUserNombre.java
-C:\Projects1\Gestion-Usuarios\src\main\java\com\usuarios\Clases\Usuarios.java
-C:\Projects1\Gestion-Usuarios\src\main\java\com\usuarios\servlet\DeleteUser.java
-C:\Projects1\Gestion-Usuarios\src\main\java\com\usuarios\servlet\ProcesarForm.java
+C:\Projects1\Gestion-Usuarios\src\main\java\com\usuarios\model\Usuarios.java
+C:\Projects1\Gestion-Usuarios\src\main\java\com\usuarios\ProjectUsuariosApplication.java
+C:\Projects1\Gestion-Usuarios\src\main\java\com\usuarios\repositorio\UsuarioRepository.java
+C:\Projects1\Gestion-Usuarios\src\main\java\com\usuarios\Controllers\UsuarioController.java

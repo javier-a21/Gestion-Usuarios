@@ -1,9 +1,12 @@
 <html>
 <body>
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<h1>Formulario de Registro de Usuarios</h1>
-
- <form action="procesarFormulario" method="post">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<h1 style= 'margin-top: 3%;'>Formulario de Registro de Usuarios</h1>
+<!-- Mostrar el mensaje si existe -->
+<div class="centrado" th:if="${mensaje}" style="color: blue; font-weight: bold;">
+    <p th:text="${mensaje}"></p>
+</div>
+ <form action="insertar" method="post">
 <label for="nombre">Nombre</label>
 <input class="nombreForm" type="text" id="nombre" name="nombre" required="required">
 <br><br>
@@ -22,5 +25,6 @@
 <br><br>
 <button type="submit">Enviar</button>
 </form>
+     <a class='volver' href="/usuarios/">Volver</a>
 </body>
 </html>
