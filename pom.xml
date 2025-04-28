@@ -7,35 +7,29 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.2.4</version>
-    <relativePath/>
+    <relativePath/> <!-- Busca el parent en el repositorio central -->
   </parent>
 
   <groupId>com.usuarios</groupId>
   <artifactId>project-usuarios</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>war</packaging> <!-- IMPORTANTE: WAR -->
 
   <properties>
+    <java.version>21</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
-    <maven.compiler.release>21</maven.compiler.release>
   </properties>
 
   <dependencies>
 
-    <!-- Starter Web SIN Tomcat NI Logging -->
+    <!-- Web Starter (excluyendo el tomcat embebido) -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
       <exclusions>
         <exclusion>
           <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-tomcat</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-logging</artifactId>
+          <artifactId>spring-boot-starter-tomcat</artifactId> <!-- quitamos Tomcat embebido -->
         </exclusion>
       </exclusions>
     </dependency>
@@ -46,27 +40,34 @@
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
 
-    <!-- JPA / Hibernate -->
+    <!-- JPA (Hibernate) -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
 
-    <!-- H2 database -->
+    <!-- Base de datos H2 en memoria -->
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <scope>runtime</scope>
     </dependency>
 
-    <!-- Jakarta Servlet API (provided por JBoss) -->
+    <!-- Tomcat para Servlet API, scope provided (lo usa el servidor de aplicaciones) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Jakarta Servlet API (proporcionada por el servidor) -->
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
 
-    <!-- Spring Devtools -->
+    <!-- Spring Boot DevTools (solo en desarrollo) -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -74,50 +75,55 @@
       <optional>true</optional>
     </dependency>
 
-    <!-- Test -->
+    <!-- JUnit para Test -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-logging</artifactId>
+    <scope>provided</scope>
+</dependency>
 
   </dependencies>
 
   <build>
-    <finalName>project-usuarios</finalName>
+    <finalName>project-usuarios</finalName> <!-- Nombre final del WAR -->
+
     <plugins>
+
+      <!-- Plugin de compilación -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
+        <version>3.11.0</version>
         <configuration>
           <source>21</source>
           <target>21</target>
-          <release>21</release>
         </configuration>
       </plugin>
+
+      <!-- Plugin para construir WAR -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>3.3.1</version>
+        <version>3.3.2</version>
         <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <failOnMissingWebXml>false</failOnMissingWebXml> <!-- No hace falta web.xml -->
         </configuration>
       </plugin>
+
+      <!-- Plugin de Spring Boot -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-            <configuration>
-              <skip>true</skip>
-            </configuration>
-          </execution>
-        </executions>
+        <configuration>
+          <skip>true</skip> <!-- IMPORTANTE para WAR: saltamos el empaquetado "fat jar" -->
+        </configuration>
       </plugin>
+
     </plugins>
   </build>
 
