@@ -9,7 +9,7 @@
         $('#nombre').on('keyup', function() {
             var name = $('#nombre').val();
             $.ajax({
-                url: '/usuarios/validarNombre', // URL corregida
+            	 url: '/project-usuarios/usuarios/validarNombre', // URL corregida
                 type: 'POST',
                 data: { nombreBuscado: name }, // Asegúrate de que el nombre del parámetro coincida
                 success: function(response) {
@@ -34,6 +34,6 @@
     <input class="nombreInput" type="text" id="nombre" name="nombre" onkeyup="validarNombre()" placeholder="Escribe el nombre..." />
 
     <div id="resultado"></div>
-<a class='volver' href="/usuarios/listar">Volver a la lista</a>
+<a class='volver' th:href="@{/usuarios/listar}">Volver a la lista</a>
 </body>
 </html>

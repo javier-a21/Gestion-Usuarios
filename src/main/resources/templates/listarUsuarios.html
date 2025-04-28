@@ -6,8 +6,8 @@
 <body>
 <h1 style= 'margin-top: 3%;'>Lista de usuarios guardados: </h1>
 <div class='button-container'>
-<a class='acciones' href='/usuarios/buscarUser'>Buscar</a>
-<a class='acciones' href='/usuarios/eliminar'>Eliminar Usuario por Id</a>
+<a class='acciones' th:href='@{/usuarios/buscarUser}'>Buscar</a>
+<a class='acciones'th:href='@{/usuarios/eliminar}'>Eliminar Usuario por Id</a>
 </div>
 
 <ul>
@@ -17,6 +17,6 @@
     </li>
 
 </ul>
-    <a class='volver' href="/usuarios/">Volver</a>
+    <a class='volver' th:href="@{/usuarios/}">Volver</a>
 </body>
 </html>

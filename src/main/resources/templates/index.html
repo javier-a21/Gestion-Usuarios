@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html>
-<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
 <body>
     <h1 class="h1Menu">Menú de Gestión de Usuarios</h1>
     <div class="divIndex">
-    <h3 class="h3Index">Insertar usuario: <a class="button" href="/usuarios/insertar">Insertar</a></h3>
-    <h3 class="h3Index">Revisar Usuarios: <a class="button" href="/usuarios/listar">Ver Usuarios</a></h3>    </div>
+        <h3 class="h3Index">
+            Insertar usuario: <a class="button" th:href="@{/usuarios/insertar}">Insertar</a>
+        </h3>
+        <h3 class="h3Index">
+            Revisar Usuarios: <a class="button" th:href="@{/usuarios/listar}">Ver Usuarios</a>
+        </h3>
+    </div>
 </body>
 </html>
