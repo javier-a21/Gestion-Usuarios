@@ -11,29 +11,3 @@ Se solucionó el error de LoggerFactory:
 Se eliminó Logback del WAR (o se excluyó del spring-boot-starter-logging).
 
 Así JBoss usó su propio slf4j-jboss-logmanager sin que Spring Boot se rompiera.
-
-La estructura del proyecto en la rama Spring-Boot-H2 es la siguiente: Estructura del Proyecto:
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   └── com
-│   │   │       └── usuarios
-│   │   │           ├── Controllers              --->Controlador
-│   │   │           │   └── UsuarioController.java
-│   │   │           ├── model
-│   │   │           │   └── Usuarios.java        --->Modelo
-│   │   │           └── repositorio
-│   │   │               └── UsuarioRepository.java
-│   │   ├── resources
-│   │   │   ├── static
-│   │   │   │   └── css
-│   │   │   │       └── style.css
-│   │   │   ├── templates                        --->Vistas
-│   │   │   │   ├── index.html
-│   │   │   │   ├── eliminarUser.html
-│   └── └── └── └── listarUsuarios.html
-│
-├── .gitignore
-├── mvnw / mvnw.cmd
-├── pom.xml
-└── README.md
