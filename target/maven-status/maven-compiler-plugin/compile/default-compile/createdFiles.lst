@@ -1,5 +1,6 @@
 com\usuarios\servlet\DeleteUser.class
 com\usuarios\servlet\BuscarUserNombre.class
 com\usuarios\Clases\Usuarios.class
+com\usuarios\config\DataSourceConfig.class
 com\usuarios\servlet\MostrarUsuariosServlet.class
 com\usuarios\servlet\ProcesarForm.class

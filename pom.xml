@@ -45,7 +45,7 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>2.1.214</version> <!-- Asegúrate de usar una versión actual -->
-            <scope>runtime</scope> <!-- Esto lo incluye solo en tiempo de ejecución -->
+           
         </dependency>
 
         <!-- Dependencia para el manejo de transacciones JTA (si no está ya incluida) -->
