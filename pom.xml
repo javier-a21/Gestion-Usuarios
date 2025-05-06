@@ -1,19 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.2.4</version>
-    <relativePath/> <!-- Busca el parent en el repositorio central -->
+    <relativePath/>
   </parent>
 
   <groupId>com.usuarios</groupId>
   <artifactId>project-usuarios</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>war</packaging> <!-- IMPORTANTE: WAR -->
+  <packaging>war</packaging>
 
   <properties>
     <java.version>21</java.version>
@@ -21,110 +22,123 @@
   </properties>
 
   <dependencies>
-
-    <!-- Web Starter (excluyendo el tomcat embebido) -->
+    <!-- Web Starter sin Tomcat ni Logback embebidos -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
       <exclusions>
+        <!-- quitamos Tomcat embebido -->
         <exclusion>
           <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-tomcat</artifactId> <!-- quitamos Tomcat embebido -->
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+        </exclusion>
+        <!-- quitamos Logback -->
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
 
-    <!-- Thymeleaf -->
+    <!-- Thymeleaf y JPA -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
-
-    <!-- JPA (Hibernate) -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
 
-    <!-- Base de datos H2 en memoria -->
+    <!-- Conector MySQL incluido en el WAR -->
     <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <scope>runtime</scope>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>8.4.0</version>
     </dependency>
 
-    <!-- Tomcat para Servlet API, scope provided (lo usa el servidor de aplicaciones) -->
+    <!-- Tomcat provided para JBoss -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-tomcat</artifactId>
       <scope>provided</scope>
     </dependency>
-
-    <!-- Jakarta Servlet API (proporcionada por el servidor) -->
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
 
-    <!-- Spring Boot DevTools (solo en desarrollo) -->
+    <!-- DevTools y pruebas -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
       <scope>runtime</scope>
       <optional>true</optional>
     </dependency>
-
-    <!-- JUnit para Test -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-logging</artifactId>
-    <scope>provided</scope>
-</dependency>
-
   </dependencies>
 
   <build>
-    <finalName>project-usuarios</finalName> <!-- Nombre final del WAR -->
+    <finalName>project-usuarios</finalName>
+
+    <!-- Copiar recursos sin filtrar (evita errores de codificación) -->
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
 
     <plugins>
+      <!-- Asegurar que Maven lea recursos en UTF-8 -->
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.3.1</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
 
-      <!-- Plugin de compilación -->
+      <!-- Compilación Java -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.11.0</version>
         <configuration>
-          <source>21</source>
-          <target>21</target>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
         </configuration>
       </plugin>
 
-      <!-- Plugin para construir WAR -->
+      <!-- Construir WAR -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <version>3.3.2</version>
         <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml> <!-- No hace falta web.xml -->
+          <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
 
-      <!-- Plugin de Spring Boot -->
+      <!-- Spring Boot: empaqueta las dependencias en WEB-INF/lib -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <skip>true</skip> <!-- IMPORTANTE para WAR: saltamos el empaquetado "fat jar" -->
-        </configuration>
+        <version>3.2.4</version>
+       <!-- <skip>true</skip>      eliminar--> 
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
-
     </plugins>
   </build>
-
 </project>
