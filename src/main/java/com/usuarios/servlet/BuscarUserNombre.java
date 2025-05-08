@@ -47,13 +47,18 @@ public class BuscarUserNombre extends HttpServlet {
         
         String nombreBuscado = request.getParameter("nombre");
         
+        String ctx = request.getContextPath();
+        
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println("<html>");
         out.println("<body>");
-        out.println("<head><title>Resultado del Formulario</title><link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">\r\n"
-        		+ "\r\n"
-        		+ "</head>");
+        out.println("<head>"
+                + "<title>Resultado del Formulario</title>"
+                + "<link rel=\"stylesheet\" "
+                +    "type=\"text/css\" "
+                +    "href=\"" + ctx + "/css/style.css\">"
+                + "</head>");
         out.println("<h1>Usuario por nombre</h1>");
         try {
             // Empezamos una transacción

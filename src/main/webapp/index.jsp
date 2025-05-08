@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 <body>
     <h1 class="h1Menu">Menú de Gestión de Usuarios</h1>
     <div class="divIndex">
