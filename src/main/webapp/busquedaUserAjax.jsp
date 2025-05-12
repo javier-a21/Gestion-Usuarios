@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
     <script>
     function validarNombre() {
         var nombre = document.getElementById("nombre").value;
@@ -27,6 +27,6 @@
     <input class="nombreInput" type="text" id="nombre" name="nombre" onkeyup="validarNombre()" placeholder="Escribe el nombre..." />
 
     <div id="resultado"></div>
-    <a class='volver' href='/project-usuarios/mostrarUsuarios'>Volver lista completa</a>
+     <a class="volver" href="<%= request.getContextPath() %>/mostrarUsuarios">Volver a la lista completa</a>
 </body>
 </html>
