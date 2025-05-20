@@ -1,12 +1,10 @@
-Aplicacion web programada en java. La aplicacion consite en un log de usuarios, el usuario tiene la capacidad de Insertar un usuario, insertar 10 usuarios de ejemplo, ver el listado de usuarios, buscar usuarios por nombre y borrar usuarios por ID. El programa main esta hecho con la version de java: Java version: 1.8.0_202. La version de jboos: jboss-eap-7.4 y la version de maven de Apache Maven 3.6.1, en el entorno de desarroyo de Eclipse.
+Aplicacion web programada en java. La aplicacion consite en un log de usuarios, el usuario tiene la capacidad de Insertar un usuario, ver el listado de usuarios, buscar usuarios por nombre y borrar usuarios por ID.
 
-El programa de las ramas que no usan Spring-Boot se despliega en el servidor de aplicaciones jboss utilizando el archivo war del proyecto. La version de jboss deve ser jboss-eap-7.4 para que despliegue correctamente la version del proyecto de la rama main. Para desplegar las otras dos versiones de las ramas jakarta-DataBaseH2 y migracion-jakarta, deberas usar Java 21 y jboss-eap-8.0.
-El programa de la version Spring-Boot-H2 se despliega con jboss-eap-8.0.
+Para desplegar la aplicacion deberas usar Java 21 y jboss-eap-8.0.
 
-En el repositorio hay Cuatro Branches: **Main**, la aplicacion original hecha en Java version: 1.8.0_202 y jboss 7 sin base de datos que utiliza las librerias de Javax para las rutas web. **migracion-jakarta**, mismo programa pero migrado a Java 21, el servidor Jboss 8 y migracion de Javax a Jakarta, y **jakarta-DataBaseH2** mismo programa y versiones que migracion-jakarta pero con uso de base de datos, como base de datos se utilizara H2 Database guardando los datos en memoria, y por ultimo **Spring-Boot-H2** migracion al framework Sptring-Boot de la aplicacion, cambio de Servlets a MVC para la logica, base de datos y las vistas.
+La aplicación fue configurada para utilizar una base de datos H2.
 
-Para que desplegara correctamente en jboss hubo que solucionar conflicotos entre la version de jboss y spring boot.
-Se solucionó el error de LoggerFactory:
+Para que desplegara correctamente en jboss hubo que solucionar conflictos entre la version de jboss y spring boot. Se solucionó el error de LoggerFactory:
 
 Se eliminó Logback del WAR (o se excluyó del spring-boot-starter-logging).
 
